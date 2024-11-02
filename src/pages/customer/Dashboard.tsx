@@ -1,6 +1,5 @@
-import AppointmentDialog from "@/components/AppointmentDialog";
-import BookingHistory from "@/components/BookingHistory";
 import { Calendar } from "@/components/Calendar";
+import Spinner from "@/components/Spinner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatAppointments } from "@/helpers/formatAppointment";
 import { useToast } from "@/hooks/use-toast";
@@ -13,6 +12,10 @@ import { useServices } from "@/hooks/useServices";
 import { Appointment } from "@/interfaces";
 import { isWeekend } from "date-fns";
 import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense } from "react";
+
+const BookingHistory = lazy(() => import("@/components/BookingHistory"));
+const AppointmentDialog = lazy(() => import("@/components/AppointmentDialog"));
 
 export default function AppointmentPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -99,26 +102,32 @@ export default function AppointmentPage() {
         </TabsContent>
 
         <TabsContent value="booking-history">
-          <BookingHistory appointments={appointments} />
+          <Suspense fallback={<Spinner />}>
+            <BookingHistory appointments={appointments} />
+          </Suspense>
         </TabsContent>
       </Tabs>
 
-      <AppointmentDialog
-        isOpen={selectedDate !== null}
-        onClose={() => setSelectedDate(null)}
-        selectedDate={selectedDate}
-        selectedDoctor={selectedDoctor}
-        selectedService={selectedService}
-        selectedTimeSlot={selectedTimeSlot}
-        dentists={dentists}
-        services={services}
-        availableTimeSlots={availableTimeSlots}
-        onDoctorChange={setSelectedDoctor}
-        onServiceChange={setSelectedService}
-        onTimeSlotChange={setSelectedTimeSlot}
-        onBook={handleBookAppointment}
-        subTotal={calculateSubTotal()}
-      />
+      {selectedDate !== null && (
+        <Suspense fallback={<Spinner />}>
+          <AppointmentDialog
+            isOpen={selectedDate !== null}
+            onClose={() => setSelectedDate(null)}
+            selectedDate={selectedDate}
+            selectedDoctor={selectedDoctor}
+            selectedService={selectedService}
+            selectedTimeSlot={selectedTimeSlot}
+            dentists={dentists}
+            services={services}
+            availableTimeSlots={availableTimeSlots}
+            onDoctorChange={setSelectedDoctor}
+            onServiceChange={setSelectedService}
+            onTimeSlotChange={setSelectedTimeSlot}
+            onBook={handleBookAppointment}
+            subTotal={calculateSubTotal()}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

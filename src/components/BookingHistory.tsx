@@ -89,11 +89,11 @@ const BookingHistory = ({ appointments }: { appointments: Appointment[] }) => {
                     return (
                       <td key={`${day}-${timeSlot}`} className="border p-2">
                         {appointment && (
-                          <div className="rounded bg-blue-100 p-2 text-xs">
+                          <div className="rounded bg-blue-500 p-2 text-xs">
                             <div className="font-medium">
                               {appointment.serviceName}
                             </div>
-                            <div className="text-gray-600">
+                            <div className="capitalize text-gray-200">
                               Dr. {appointment.doctorEmail.split("@")[0]}
                             </div>
                           </div>
