@@ -11,12 +11,12 @@ import useAuth from "@/hooks/useAuth";
 import { useDentists } from "@/hooks/useDentists";
 import { useDoctorAppointmentsByEmail } from "@/hooks/useDoctorAppointments";
 import { useServices } from "@/hooks/useServices";
+import { Appointment } from "@/interfaces";
 
 import { db } from "@/lib/firebase";
 import { format, isSameDay, isWeekend, parseISO } from "date-fns";
 import { doc, updateDoc } from "firebase/firestore";
 import { useCallback, useEffect, useState, useMemo } from "react";
-import { Appointment } from "../customer/Dashboard";
 
 export default function AppointmentPage() {
   const [currentDate, setCurrentDate] = useState(new Date());

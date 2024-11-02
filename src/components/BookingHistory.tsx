@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { format, startOfWeek, addDays } from "date-fns";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Appointment } from "@/interfaces";
+import { addDays, format, startOfWeek } from "date-fns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 const TIME_SLOTS = [
   "8:30 AM",

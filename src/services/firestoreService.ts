@@ -1,5 +1,6 @@
+import { Appointment } from "@/interfaces";
 import { db } from "@/lib/firebase";
-import { Appointment } from "@/pages/customer/Dashboard";
+
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export const fetchDentists = async () => {

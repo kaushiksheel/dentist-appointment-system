@@ -20,9 +20,9 @@ import {
   LazyWrapper,
   ModeToggle,
   ViewReport,
+  Protected,
 } from "./imports/app";
 import NotFound from "./pages/NotFount";
-import Protected from "./pages/Protected";
 
 const adminRoutes = [
   { path: "dashboard", element: <AdminDashboard /> },

@@ -1,4 +1,4 @@
-import { Appointment } from "@/pages/customer/Dashboard";
+import { Appointment } from "@/interfaces";
 import { fetchAllAppointments } from "@/services/firestoreService";
 import { useEffect, useState } from "react";
 
