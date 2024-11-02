@@ -1,4 +1,5 @@
 import LoginCard from "@/components/LoginCard";
+import { DUMMY_USERS } from "@/data/dummy-users";
 import { useToast } from "@/hooks/use-toast";
 import { auth } from "@/lib/firebase";
 import { FirebaseError } from "firebase/app";
@@ -11,8 +12,7 @@ const Login = () => {
   const handleLogin = async (email: string, password: string) => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      // Redirect based on user role (you'll need to implement this logic)
-      //   navigate('/customer')
+
       if (user) {
         navigate("/customer/dashboard");
       }
@@ -23,17 +23,16 @@ const Login = () => {
           variant: "destructive",
         });
       }
-
-      //   toast({
-      //     title: 'Error',
-      //     description: 'Failed to log in. Please check your credentials.',
-      //     variant: 'destructive',
-      //   })
     }
   };
   return (
     <div className="grid h-screen w-screen place-content-center">
-      <LoginCard onSubmit={handleLogin} signupLink="/customer/signup" />
+      <LoginCard
+        onSubmit={handleLogin}
+        signupLink="/customer/signup"
+        showDummyLogin
+        dummyUser={DUMMY_USERS.CUSTOMER}
+      />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import LoginCard from "@/components/LoginCard";
+import { DUMMY_USERS } from "@/data/dummy-users";
 import { useToast } from "@/hooks/use-toast";
 import { auth } from "@/lib/firebase";
 import { FirebaseError } from "firebase/app";
@@ -26,7 +27,12 @@ const Login = () => {
   };
   return (
     <div className="grid h-screen w-screen place-content-center">
-      <LoginCard onSubmit={handleLogin} signupLink="/dentist/signup" />
+      <LoginCard
+        onSubmit={handleLogin}
+        signupLink="/dentist/signup"
+        showDummyLogin
+        dummyUser={DUMMY_USERS.DENTIST}
+      />
     </div>
   );
 };
