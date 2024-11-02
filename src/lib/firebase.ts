@@ -3,17 +3,15 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyArQkvAPnSQ8XNNqUerh4sbkg2tNNRlY8Q",
-  authDomain: "dentist-appointment-book-fbcbc.firebaseapp.com",
-  projectId: "dentist-appointment-book-fbcbc",
-  storageBucket: "dentist-appointment-book-fbcbc.appspot.com",
-  messagingSenderId: "1017795427238",
-  appId: "1:1017795427238:web:adede235a5f190a9bf6d67",
+  apiKey: import.meta.env.VITE_REACT_APP_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env
+    .VITE_REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_REACT_APP_FIREBASE_APP_ID,
 };
-
-// Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
