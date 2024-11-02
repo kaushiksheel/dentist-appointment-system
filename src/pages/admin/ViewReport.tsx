@@ -65,7 +65,12 @@ const ViewReport = () => {
   return (
     <div className="container mx-auto py-10">
       <h2 className="mb-4 text-2xl font-bold">Appointment Reports</h2>
-      <DataTable columns={columns} data={aggregatedAppointments} />
+      <DataTable
+        searchKey="dentistName"
+        searchPlaceholder="Search by Dentist Name"
+        columns={columns}
+        data={aggregatedAppointments}
+      />
     </div>
   );
 };

@@ -1,39 +1,63 @@
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AddDentist from "../pages/admin/AddDentist";
-import AddServices from "../pages/admin/AddServices";
-import AdminLayout from "../pages/admin/Layout";
-import CustomerLayout from "../pages/customer/Layout";
-import ViewReport from "../pages/admin/ViewReport";
-import CustomerLogin from "../pages/customer/Login";
-import DentistLogin from "../pages/dentist/Login";
-import DentistSignup from "../pages/dentist/Signup";
-import AdminLogin from "../pages/admin/Login";
-import AdminSignup from "../pages/admin/Signup";
-import CustomerSignup from "../pages/customer/Signup";
-import CustomerDashboard from "../pages/customer/Dashboard";
-import DentistDashboard from "../pages/dentist/Dashboard";
-import AdminDashboard from "../pages/admin/Dashboard";
-import LandingPage from "../pages/LandingPage";
-import Protected from "../pages/Protected";
+import { ErrorBoundary } from "../components/ErrorBoundary";
+import { ModeToggle } from "../components/ModeToggle";
+import LazyWrapper from "@/components/LazyWrapper";
+
+// Lazy load components
+const LandingPage = React.lazy(() => import("../pages/LandingPage"));
+
+// Admin components
+const AdminLogin = React.lazy(() => import("../pages/admin/Login"));
+const AdminSignup = React.lazy(() => import("../pages/admin/Signup"));
+const AdminLayout = React.lazy(() => import("../pages/admin/Layout"));
+const AdminDashboard = React.lazy(() => import("../pages/admin/Dashboard"));
+const AddServices = React.lazy(() => import("../pages/admin/AddServices"));
+const ViewReport = React.lazy(() => import("../pages/admin/ViewReport"));
+const AddDentist = React.lazy(() => import("../pages/admin/AddDentist"));
+
+// Customer components
+const CustomerLogin = React.lazy(() => import("../pages/customer/Login"));
+const CustomerSignup = React.lazy(() => import("../pages/customer/Signup"));
+const CustomerLayout = React.lazy(() => import("../pages/customer/Layout"));
+const CustomerDashboard = React.lazy(
+  () => import("../pages/customer/Dashboard"),
+);
+
+// Dentist components
+const DentistLogin = React.lazy(() => import("../pages/dentist/Login"));
+const DentistSignup = React.lazy(() => import("../pages/dentist/Signup"));
+const DentistDashboard = React.lazy(() => import("../pages/dentist/Dashboard"));
+
+// Other components
+const Protected = React.lazy(() => import("../pages/Protected"));
 
 export {
+  // React Router components
   BrowserRouter,
   Route,
   Routes,
-  AddDentist,
-  AddServices,
-  AdminLayout,
-  CustomerLayout,
-  ViewReport,
-  CustomerLogin,
-  DentistLogin,
-  DentistSignup,
+
+  // Lazy-loaded components
+  LandingPage,
   AdminLogin,
   AdminSignup,
-  CustomerSignup,
-  CustomerDashboard,
-  DentistDashboard,
+  AdminLayout,
   AdminDashboard,
-  LandingPage,
+  AddServices,
+  ViewReport,
+  AddDentist,
+  CustomerLogin,
+  CustomerSignup,
+  CustomerLayout,
+  CustomerDashboard,
+  DentistLogin,
+  DentistSignup,
+  DentistDashboard,
   Protected,
+
+  // Other components
+  LazyWrapper,
 };
+
+export { ErrorBoundary, ModeToggle };

@@ -73,7 +73,7 @@ export default function WhoAmI() {
           animate="visible"
           variants={containerVariants}
         >
-          <Card className="border-none bg-background/60 shadow-2xl backdrop-blur">
+          <Card className="border border-none bg-background/60">
             <CardHeader className="space-y-6 text-center">
               <motion.div variants={itemVariants}>
                 <CardTitle className="text-4xl font-bold tracking-tight">

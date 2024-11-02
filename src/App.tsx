@@ -1,59 +1,150 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { AuthProvider } from "./contexts/AuthContext";
 import {
   AddDentist,
   AddServices,
+  AdminDashboard,
   AdminLayout,
-  CustomerLayout,
-  ViewReport,
-  CustomerLogin,
-  DentistLogin,
-  DentistSignup,
   AdminLogin,
   AdminSignup,
-  CustomerSignup,
   CustomerDashboard,
+  CustomerLayout,
+  CustomerLogin,
+  CustomerSignup,
   DentistDashboard,
-  AdminDashboard,
+  DentistLogin,
+  DentistSignup,
+  ErrorBoundary,
   LandingPage,
-  Protected,
-  Routes,
-  Route,
-  BrowserRouter,
-} from "@/imports/app";
+  LazyWrapper,
+  ModeToggle,
+  ViewReport,
+} from "./imports/app";
+import NotFound from "./pages/NotFount";
+import Protected from "./pages/Protected";
+
+const adminRoutes = [
+  { path: "dashboard", element: <AdminDashboard /> },
+  { path: "add-services", element: <AddServices /> },
+  { path: "view-report", element: <ViewReport /> },
+  { path: "add-dentist", element: <AddDentist /> },
+];
+
+const customerRoutes = [{ path: "dashboard", element: <CustomerDashboard /> }];
+
+const dentistRoutes = [{ path: "dashboard", element: <DentistDashboard /> }];
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* landing */}
-        <Route path="/" element={<LandingPage />} />
-        {/* admin */}
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/signup" element={<AdminSignup />} />
-        <Route element={<Protected />}>
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/add-services" element={<AddServices />} />
-            <Route path="/admin/view-report" element={<ViewReport />} />
-            <Route path="/admin/add-dentist" element={<AddDentist />} />
-          </Route>
-        </Route>
-        {/* customer */}
-        <Route path="/customer/login" element={<CustomerLogin />} />
-        <Route path="/customer/signup" element={<CustomerSignup />} />
-        <Route element={<Protected />}>
-          <Route path="/customer" element={<CustomerLayout />}>
-            <Route path="/customer/dashboard" element={<CustomerDashboard />} />
-          </Route>
-        </Route>
-        {/* dentist */}
-        <Route path="/dentist/login" element={<DentistLogin />} />
-        <Route path="/dentist/signup" element={<DentistSignup />} />
-        <Route element={<Protected />}>
-          <Route path="/dentist" element={<CustomerLayout />}>
-            <Route path="/dentist/dashboard" element={<DentistDashboard />} />
-          </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <div className="relative min-h-screen">
+        <ErrorBoundary>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <LazyWrapper>
+                    <LandingPage />
+                  </LazyWrapper>
+                }
+              />
+
+              {/* Admin routes */}
+              <Route
+                path="/admin/login"
+                element={
+                  <LazyWrapper>
+                    <AdminLogin />
+                  </LazyWrapper>
+                }
+              />
+              <Route
+                path="/admin/signup"
+                element={
+                  <LazyWrapper>
+                    <AdminSignup />
+                  </LazyWrapper>
+                }
+              />
+              <Route element={<Protected />}>
+                <Route element={<AdminLayout />}>
+                  {adminRoutes.map((route) => (
+                    <Route
+                      key={route.path}
+                      path={`/admin/${route.path}`}
+                      element={<LazyWrapper>{route.element}</LazyWrapper>}
+                    />
+                  ))}
+                </Route>
+              </Route>
+
+              {/* Customer routes */}
+              <Route
+                path="/customer/login"
+                element={
+                  <LazyWrapper>
+                    <CustomerLogin />
+                  </LazyWrapper>
+                }
+              />
+              <Route
+                path="/customer/signup"
+                element={
+                  <LazyWrapper>
+                    <CustomerSignup />
+                  </LazyWrapper>
+                }
+              />
+              <Route element={<Protected />}>
+                <Route element={<CustomerLayout />}>
+                  {customerRoutes.map((route) => (
+                    <Route
+                      key={route.path}
+                      path={`/customer/${route.path}`}
+                      element={<LazyWrapper>{route.element}</LazyWrapper>}
+                    />
+                  ))}
+                </Route>
+              </Route>
+
+              {/* Dentist routes */}
+              <Route
+                path="/dentist/login"
+                element={
+                  <LazyWrapper>
+                    <DentistLogin />
+                  </LazyWrapper>
+                }
+              />
+              <Route
+                path="/dentist/signup"
+                element={
+                  <LazyWrapper>
+                    <DentistSignup />
+                  </LazyWrapper>
+                }
+              />
+              <Route element={<Protected />}>
+                <Route element={<CustomerLayout />}>
+                  {dentistRoutes.map((route) => (
+                    <Route
+                      key={route.path}
+                      path={`/dentist/${route.path}`}
+                      element={<LazyWrapper>{route.element}</LazyWrapper>}
+                    />
+                  ))}
+                </Route>
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </ErrorBoundary>
+        <div className="fixed bottom-10 right-10">
+          <ModeToggle />
+        </div>
+      </div>
+    </AuthProvider>
   );
 };
 
