@@ -66,7 +66,7 @@ export default function WhoAmI() {
   return (
     <div className="bg-dot-white/[0.2] relative min-h-screen w-full overflow-hidden bg-gradient-to-tr from-background via-background/95 to-muted">
       <div className="absolute inset-0 bg-gradient-to-t from-background to-background/0 backdrop-blur-[1px]" />
-      <div className="container relative flex min-h-screen flex-col items-center justify-center px-4">
+      <div className="relative flex min-h-screen flex-col items-center justify-center px-4">
         <motion.div
           className="w-full max-w-5xl"
           initial="hidden"
