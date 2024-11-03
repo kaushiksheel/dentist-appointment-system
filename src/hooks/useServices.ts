@@ -1,11 +1,6 @@
+import { Service } from "@/interfaces";
 import { fetchDentistServices } from "@/services/firestoreService";
 import { useState, useEffect } from "react";
-
-export interface Service {
-  id: string;
-  price: number;
-  serviceName: string;
-}
 
 export function useServices() {
   const [services, setServices] = useState<Service[]>([]);

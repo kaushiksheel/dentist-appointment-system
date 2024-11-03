@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dentist } from "@/hooks/useDentists";
+
 import {
   Dialog,
   DialogContent,
@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import TimeSlotSelector from "./TimeSlotSelector";
+import { Dentist } from "@/interfaces";
 interface AppointmentDialogProps {
   isOpen: boolean;
   onClose: () => void;

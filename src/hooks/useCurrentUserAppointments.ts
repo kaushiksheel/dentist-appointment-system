@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase"; // Assuming you have a firebase config file
+import { db } from "@/lib/firebase";
 import { Appointment } from "@/interfaces";
 
 export function useAppointments(userId: string) {

@@ -1,5 +1,4 @@
-import { Dentist } from "@/hooks/useDentists";
-import { Appointment } from "@/interfaces";
+import { Appointment, Dentist } from "@/interfaces";
 import { parseISO } from "date-fns";
 
 export const formatAppointments = (

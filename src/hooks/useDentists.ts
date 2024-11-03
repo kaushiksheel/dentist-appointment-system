@@ -1,16 +1,6 @@
+import { Dentist } from "@/interfaces";
 import { fetchDentists } from "@/services/firestoreService";
 import { useState, useEffect } from "react";
-
-export interface Dentist {
-  id: string;
-  mobileNo: string;
-  fullName: string;
-  hourlyRate: number;
-  email: string;
-  gender: "male" | "female" | "other"; // Assuming gender options
-  username: string;
-  // Add other dentist properties here
-}
 
 export function useDentists() {
   const [dentists, setDentists] = useState<Dentist[]>([]);

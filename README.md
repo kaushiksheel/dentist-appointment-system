@@ -35,53 +35,31 @@ This project is a comprehensive Dentist Appointment Booking system consisting of
 1. Bookings are only available from Monday to Friday, between 08:30 AM to 05:30 PM.
 2. A dentist can only be booked twice a day, and each time slot is exclusive to one customer.
 
-## Installation and Setup
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/your-username/dentist-appointment-system.git
-   ```
+## Demo
 
-2. Navigate to the project directory:
-   ```
-   cd dentist-appointment-system
-   ```
+[Demo Link](https://dentist-appointment-system.vercel.app/)
 
-3. Install dependencies:
-   ```
-   npm install
-   ```
-
-4. Set up Firebase:
-   - Create a Firebase project
-   - Add your Firebase configuration to `src/firebase/config.js`
-
-5. Start the development server:
-   ```
-   npm start
-   ```
 
 ## Usage
 
 ### Admin Portal
 
-1. Login with admin credentials
+1. Login with admin credentials or  with Dummy Admin
 2. Navigate through the dashboard to manage services, dentists, and view reports
 
 ### Dentist Portal
 
-1. Login with dentist credentials
+1. Login with dentist credentials or  with Dummy Dentist
 2. View assigned patients and mark appointments as completed
 
 ### Customer Portal
 
 1. Register or login
-2. Browse available time slots and dentists
+2. Browse available time slots and dentists or  with Dummy Customer
 3. Select a service and complete the booking process
 
-## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 

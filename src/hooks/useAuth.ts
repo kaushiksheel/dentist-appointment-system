@@ -1,17 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
-
-interface IUser {
-  uid: string;
-  email: string | null;
-  displayName: string | null;
-}
-
-interface IAuthState {
-  isAuthenticated: boolean;
-  user: IUser | null;
-  loading: boolean;
-}
+import { IAuthState } from "@/interfaces";
 
 const useAuth = () => {
   const [authState, setAuthState] = useState<IAuthState>({

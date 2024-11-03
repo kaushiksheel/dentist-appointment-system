@@ -5,7 +5,7 @@ import { useDentists } from "@/hooks/useDentists";
 import { format, parseISO } from "date-fns";
 import { useMemo } from "react";
 
-interface AggregatedAppointment {
+export interface AggregatedAppointment {
   date: string;
   dentistName: string;
   numberOfBookings: number;

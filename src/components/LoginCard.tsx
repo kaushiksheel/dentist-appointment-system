@@ -5,9 +5,6 @@ export interface DummyUser {
   icon: React.ReactNode;
 }
 
-// constants/auth.ts
-
-// components/LoginCard.tsx
 import { Button } from "@/components/ui/button";
 import {
   Card,

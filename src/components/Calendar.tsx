@@ -101,12 +101,12 @@ export const Calendar: React.FC<CustomCalendarProps> = ({
         </div>
       </div>
 
-      <div className="rounded-lg border border-border bg-card">
+      <div className="min-w-full overflow-x-auto rounded-lg border border-border bg-card">
         <div className="grid grid-cols-7 border-b border-border">
           {dayNames.map((day) => (
             <div
               key={day}
-              className="border-border px-3 py-2 text-center text-sm font-medium text-muted-foreground"
+              className="truncate border-border px-3 py-2 text-center text-sm font-medium text-muted-foreground"
             >
               {day}
             </div>
