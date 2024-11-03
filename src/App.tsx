@@ -7,20 +7,18 @@ import {
   AdminDashboard,
   AdminLayout,
   AdminLogin,
-  AdminSignup,
   CustomerDashboard,
   CustomerLayout,
   CustomerLogin,
   CustomerSignup,
   DentistDashboard,
   DentistLogin,
-  DentistSignup,
   ErrorBoundary,
   LandingPage,
   LazyWrapper,
   ModeToggle,
-  ViewReport,
   Protected,
+  ViewReport,
 } from "./imports/app";
 import NotFound from "./pages/NotFount";
 
@@ -59,14 +57,7 @@ const App = () => {
                   </LazyWrapper>
                 }
               />
-              <Route
-                path="/admin/signup"
-                element={
-                  <LazyWrapper>
-                    <AdminSignup />
-                  </LazyWrapper>
-                }
-              />
+
               <Route element={<Protected />}>
                 <Route element={<AdminLayout />}>
                   {adminRoutes.map((route) => (
@@ -117,14 +108,7 @@ const App = () => {
                   </LazyWrapper>
                 }
               />
-              <Route
-                path="/dentist/signup"
-                element={
-                  <LazyWrapper>
-                    <DentistSignup />
-                  </LazyWrapper>
-                }
-              />
+
               <Route element={<Protected />}>
                 <Route element={<CustomerLayout />}>
                   {dentistRoutes.map((route) => (

@@ -27,12 +27,7 @@ const Login = () => {
   };
   return (
     <div className="grid h-screen w-screen place-content-center">
-      <LoginCard
-        onSubmit={handleLogin}
-        signupLink="/admin/signup"
-        showDummyLogin
-        dummyUser={DUMMY_USERS.ADMIN}
-      />
+      <LoginCard onSubmit={handleLogin} dummyUser={DUMMY_USERS.ADMIN} />
     </div>
   );
 };

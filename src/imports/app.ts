@@ -9,7 +9,7 @@ const LandingPage = React.lazy(() => import("../pages/LandingPage"));
 
 // Admin components
 const AdminLogin = React.lazy(() => import("../pages/admin/Login"));
-const AdminSignup = React.lazy(() => import("../pages/admin/Signup"));
+
 const AdminLayout = React.lazy(() => import("../pages/admin/Layout"));
 const AdminDashboard = React.lazy(() => import("../pages/admin/Dashboard"));
 const AddServices = React.lazy(() => import("../pages/admin/AddServices"));
@@ -26,7 +26,7 @@ const CustomerDashboard = React.lazy(
 
 // Dentist components
 const DentistLogin = React.lazy(() => import("../pages/dentist/Login"));
-const DentistSignup = React.lazy(() => import("../pages/dentist/Signup"));
+
 const DentistDashboard = React.lazy(() => import("../pages/dentist/Dashboard"));
 
 // Other components
@@ -41,7 +41,6 @@ export {
   // Lazy-loaded components
   LandingPage,
   AdminLogin,
-  AdminSignup,
   AdminLayout,
   AdminDashboard,
   AddServices,
@@ -52,7 +51,6 @@ export {
   CustomerLayout,
   CustomerDashboard,
   DentistLogin,
-  DentistSignup,
   DentistDashboard,
   Protected,
 
