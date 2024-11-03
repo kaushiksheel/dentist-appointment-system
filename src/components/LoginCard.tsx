@@ -1,10 +1,3 @@
-export interface DummyUser {
-  email: string;
-  password: string;
-  label: string;
-  icon: React.ReactNode;
-}
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,9 +10,17 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
+
+interface DummyUser {
+  email: string;
+  password: string;
+  label: string;
+  icon: React.ReactNode;
+}
 
 interface LoginCardProps {
-  onSubmit: (email: string, password: string) => void;
+  onSubmit: (email: string, password: string) => Promise<void>;
   signupLink?: string;
   title?: string;
   dummyUser?: DummyUser;
@@ -36,17 +37,28 @@ export default function LoginCard({
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(email, password);
+    setIsLoading(true);
+    try {
+      await onSubmit(email, password);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleDummyLogin = () => {
+  const handleDummyLogin = async () => {
     if (!dummyUser) return;
     setEmail(dummyUser.email);
     setPassword(dummyUser.password);
-    onSubmit(dummyUser.email, dummyUser.password);
+    setIsLoading(true);
+    try {
+      await onSubmit(dummyUser.email, dummyUser.password);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -67,8 +79,10 @@ export default function LoginCard({
                 variant="outline"
                 className="relative w-full"
                 onClick={handleDummyLogin}
+                disabled={isLoading}
               >
                 {dummyUser.icon}
+
                 {dummyUser.label}
               </Button>
             </div>
@@ -98,6 +112,7 @@ export default function LoginCard({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="pl-10"
+              disabled={isLoading}
             />
           </div>
           <div className="relative">
@@ -111,11 +126,13 @@ export default function LoginCard({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="pl-10 pr-10"
+              disabled={isLoading}
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
               className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-400 hover:text-gray-600 focus:outline-none"
+              disabled={isLoading}
             >
               {showPassword ? (
                 <EyeOff size={18} className="text-muted-foreground" />
@@ -124,8 +141,18 @@ export default function LoginCard({
               )}
             </button>
           </div>
-          <Button type="submit" className="w-full">
-            Log In
+          <Button
+            disabled={!email || !password || isLoading}
+            type="submit"
+            className="w-full"
+          >
+            {isLoading ? (
+              <>
+                <Spinner />
+              </>
+            ) : (
+              "Log In"
+            )}
           </Button>
         </form>
       </CardContent>
